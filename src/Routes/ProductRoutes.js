@@ -9,7 +9,9 @@ const model = require("../Models/ProductModel");
 const router = express.Router();
 
 router
+    .get("/", productController.getProducts)
     .post("/",upload.single("image"), productController.createProduct)
-    .put("/",upload.single("image"), productController.updateProduct);
+    .put("/",upload.single("image"), productController.updateProduct)
+    .delete("/:id", productController.deleteProduct);
 
 module.exports = router;

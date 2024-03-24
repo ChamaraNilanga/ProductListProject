@@ -2,8 +2,18 @@ const Product = require("../Models/ProductModel");
 const imageUploader = require("../Utils/ImageUploader");
 
 module.exports = {
-  get: async (req, res) => {
-    console.log("My service");
+  getProducts: async (req) => {
+    try {
+      const products = await Product.find();
+      if (products) {
+        return { data: products, statusCode: 200, success: true , message: "Products get successfully"};
+      } else {
+        return { success: false, statusCode: 400, message: "Products not found" };
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   },
 
   createProduct: async (req) => {
@@ -65,4 +75,19 @@ module.exports = {
       throw error;
     }
   },
+  deleteProduct: async (req) => {
+    const id = req.params.id;
+    try {
+        const product = await Product.findByIdAndDelete(id);
+        if (product) {
+            return { data: product, statusCode: 200, success: true , message: "Product deleted successfully"};
+        } else {
+            return { success: false, statusCode: 400, message: "Product not found" };
+        }
+    }
+    catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 };
