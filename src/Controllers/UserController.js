@@ -2,9 +2,6 @@ const { isErrored } = require("stream");
 const userService = require("../Services/UserService");
 const userValidate = require("../validator/UserValidator");
 module.exports = {
-  get: async (req, res) => {
-    console.log("get Success");
-  },
   createUser: async (req, res) => {
     const { email, password } = req.body;
     try {

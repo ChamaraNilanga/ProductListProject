@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv").config();
 const userRoutes = require("./src/Routes/UserRoutes");
+const productRoutes = require("./src/Routes/ProductRoutes");
 
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
@@ -39,7 +40,11 @@ app.use(function (req, res, next) {
 app.set('trust proxy', true);
 require("./src/dbConfig/initDB")()
 
+// Use multer for handling form data
+// app.use(upload.array()); 
+
 app.use("/user", userRoutes);
+app.use("/product", productRoutes);
 
 app.listen(process.env.PORT || 8080, function() {
 	console.log('Express app running on port ' + (process.env.PORT || 8080))

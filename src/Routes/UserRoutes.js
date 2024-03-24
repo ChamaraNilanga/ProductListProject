@@ -4,7 +4,6 @@ const controller = require("../Controllers/UserController");
 const router = express.Router();
 
 router
-  .get("/", controller.get)
   .post("/", controller.createUser)
   .post("/login", controller.userLogin);
 
