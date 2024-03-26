@@ -18,10 +18,21 @@ module.exports = {
             });
         }
     },
-    getUser: (req, res) => {
-        res.json({ message: "Cart Controller" });
-    },
-    userLogin: (req, res) => {
-        res.json({ message: "Cart Controller" });
+    getCartForUser: async(req, res) => {
+        try{
+            const result =await CartService.getCartByUser(req);
+            if (!result.success) {
+            res.status(400).send({
+                message: result.message,
+            });
+            } else {
+            res.send(JSON.stringify(result));
+            }   
+        }catch(error){
+            console.error(error.message);
+            res.status(500).send({
+                message: error.message,
+            });
+        }
     },
 };
