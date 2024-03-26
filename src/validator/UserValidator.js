@@ -18,7 +18,7 @@ const validator = require("validator");
      if (value === undefined || value === null || typeof value !== "string") {
        return {result :false , message : "Value is not a string"};
      }
-     return true;
+     return {result:true};
    } catch (error) {
      throw error;
    }

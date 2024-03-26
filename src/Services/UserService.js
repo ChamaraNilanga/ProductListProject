@@ -8,8 +8,20 @@ const jwt = require("jsonwebtoken");
 // const bcrypt = require("bcrypt");
 
 module.exports = {
-  get: async (req, res) => {
-    console.log("My service");
+  getUser: async (req) => {
+    const {id} = req.params;
+    try {
+      const data = await User.findById(id);
+      if (data) {
+        return { data: data, statusCode: 200, success: true , message: "User found"};
+      } else {
+        return { success: false, message: "User not found" };
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+    
   },
 
   createUser: async (req) => {
