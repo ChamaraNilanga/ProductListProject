@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv").config();
 const userRoutes = require("./src/Routes/UserRoutes");
 const productRoutes = require("./src/Routes/ProductRoutes");
+const CartRoutes = require("./src/Routes/CartRoutes");
 
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
@@ -45,6 +46,7 @@ require("./src/dbConfig/initDB")()
 
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
+app.use("/cart", CartRoutes);
 
 app.listen(process.env.PORT || 8080, function() {
 	console.log('Express app running on port ' + (process.env.PORT || 8080))

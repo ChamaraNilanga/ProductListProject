@@ -89,5 +89,9 @@ module.exports = {
       console.error(error);
       throw error;
     }
+  },
+  getProductByID: async (id) => {
+      const product = await Product.findById(id);
+      return product
   }
 };
