@@ -17,7 +17,7 @@ module.exports = {
   },
 
   createProduct: async (req) => {
-    const { name, price, description , size , color } = req.body;
+    const { name, price, description , size , color,category } = req.body;
     try {
       const existProduct = await Product.findOne({ name , description });
       if (existProduct === null) {
@@ -30,7 +30,8 @@ module.exports = {
                 description: description,
                 size: size,
                 color: color,
-                image: image
+                image: image,
+                category:category
             }
         );
         const data = await product.save();
